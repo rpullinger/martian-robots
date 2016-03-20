@@ -20,3 +20,11 @@ export const prettyPrintAngle = (angle) => {
             return angle;
     }
 }
+
+
+export const stringifyState = (state) => {
+    return state.robots.map((robot) => {
+        const isLost = robot.isLost ? 'LOST': '';
+        return `${robot.x} ${robot.y} ${prettyPrintAngle(robot.direction)} ${isLost}`;
+    });
+}

@@ -5,10 +5,6 @@ import reducer, { id, x, y, direction, isLost, instructions, robot } from './rob
 
 describe('Robot reducer', () => {
 
-    // it('should have a width and height', () => {
-    //     expect(reducer(undefined, {})).to.have.all.keys('width', 'height');
-    // });
-
     /**
      * id
      */

@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 import parseInput from './helpers/parseInput';
+import { stringifyState } from './helpers';
 import store from './store';
 
-import { createWorld } from './actions/world';
+import { create, transform } from './actions/robots';
+import { createWorld, explore } from './actions/world';
 
 const input = `5 3
 1 1 E
@@ -14,24 +16,17 @@ FRRFLLFFRRFLL
 0 3 W
 LLFFFLFLFL`
 
-
-const exploreMars = (robots) => {
-    return robots.map(followInstructions);
-}
-
-const followInstructions = (robot) => {
-    // TODO: follow robots instructions and update location
-    return robot;
-}
-
 const config = parseInput(input);
 
-store.subscribe(() => {
-    console.log(store.getState());
-});
+const initialise = (store, config) => {
+    store.dispatch(createWorld(config.world.width, config.world.height));
+    config.robots.forEach((robot, i) => {
+        store.dispatch(create(i, robot.x, robot.y, robot.direction, robot.instructions));
+    });
+}
 
-store.dispatch(createWorld(config.world.width, config.world.height));
+initialise(store, config);
+store.dispatch(explore());
 
-
-const robots = exploreMars(config.robots);
-console.log(robots);
+const output = stringifyState(store.getState());
+console.log(output);

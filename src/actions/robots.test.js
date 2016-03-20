@@ -138,6 +138,10 @@ describe('Robot actions', () => {
             });
         });
 
+        it('should have a follow Instructions action', () => {
+            // TODO: add -> http://redux.js.org/docs/recipes/WritingTests.html#async-action-creators
+        });
+
     });
 
 });

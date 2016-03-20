@@ -27,6 +27,19 @@ export function transform(robot, instruction, world){
     }}
 }
 
+export function followInstructions(id){
+    return function (dispatch, getState){
+        const state = getState();
+        const world = state.world;
+        const robot = state.robots[id];
+
+        robot.instructions.forEach((instruction) => {
+            const currentRobot = getState().robots[id];
+            dispatch(transform(currentRobot, instruction, world));
+        });
+    }
+}
+
 
 // TODO: seperate this robot logic somewhere
 

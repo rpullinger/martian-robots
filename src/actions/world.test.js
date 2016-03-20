@@ -24,5 +24,10 @@ describe('World actions', () => {
         expect(actions.createWorld(150, 150)).to.deep.equal(expectedAction);
         expect(actions.createWorld(50, 50)).to.deep.equal(expectedAction);
     });
-    
+
+    it('should have an explore world action', () => {
+        // TODO: add -> http://redux.js.org/docs/recipes/WritingTests.html#async-action-creators
+    });
+
+
 });
