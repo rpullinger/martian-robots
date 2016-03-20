@@ -5,7 +5,8 @@ export function scents(state = [], action){
     case constants.LOST_ROBOT:
         return [...state, {
             x: action.x,
-            y: action.y
+            y: action.y,
+            direction: action.direction
         }]
     default:
         return state;

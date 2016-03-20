@@ -17,10 +17,10 @@ export function transform(robot, instruction, world, scents){
     const newRobot = transformInstruction(robot, instruction);
 
     // Check for scents
-    if (checkForScents(newRobot.x, newRobot.y, scents)){
-        return {
+    if (checkForScents(newRobot.x, newRobot.y, newRobot.direction, scents)){
+        return {...newRobot, ...{
             type: constants.SCENT_FOUND
-        };
+        }}
     }
 
     // Check for lost robot
@@ -31,13 +31,13 @@ export function transform(robot, instruction, world, scents){
     }
 
     return {...newRobot, ...{
-        type: constants.UPDATE_ROBOT,
+        type: constants.UPDATE_ROBOT
     }}
 }
 
-export function checkForScents(x, y, scents){
+export function checkForScents(x, y, direction, scents){
     return scents.reduce((prev, scent) => {
-        if (scent.x === x && scent.y === y){
+        if (scent.x === x && scent.y === y && scent.direction === direction){
             return true;
         } else {
             return prev;
