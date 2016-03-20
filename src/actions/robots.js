@@ -12,8 +12,16 @@ export function create(id, x, y, direction, instructions){
     }
 }
 
-export function transform(robot, instruction, world){
+export function transform(robot, instruction, world, scents){
+
     const newRobot = transformInstruction(robot, instruction);
+
+    // Check for scents
+    if (checkForScents(newRobot.x, newRobot.y, scents)){
+        return {
+            type: constants.SCENT_FOUND
+        };
+    }
 
     // Check for lost robot
     if (isRobotLost(newRobot.x, newRobot.y, world.width, world.height)){
@@ -27,6 +35,17 @@ export function transform(robot, instruction, world){
     }}
 }
 
+export function checkForScents(x, y, scents){
+    return scents.reduce((prev, scent) => {
+        if (scent.x === x && scent.y === y){
+            return true;
+        } else {
+            return prev;
+
+        }
+    }, false);
+}
+
 export function followInstructions(id){
     return function (dispatch, getState){
         const state = getState();
@@ -35,7 +54,12 @@ export function followInstructions(id){
 
         robot.instructions.forEach((instruction) => {
             const currentRobot = getState().robots[id];
-            dispatch(transform(currentRobot, instruction, world));
+            const scents = getState().scents;
+
+            if (currentRobot.isLost){
+                return;
+            }
+            dispatch(transform(currentRobot, instruction, world, scents));
         });
     }
 }

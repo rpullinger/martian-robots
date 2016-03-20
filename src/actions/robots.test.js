@@ -32,7 +32,7 @@ describe('Robot actions', () => {
     });
 
     it('should update if new position is safe', () => {
-        expect(actions.transform(robot, "F", world))
+        expect(actions.transform(robot, "F", world, []))
         .to.have.property('type')
         .and.equal(constants.UPDATE_ROBOT);
     });
@@ -41,7 +41,7 @@ describe('Robot actions', () => {
         expect(actions.transform({...robot, ...{
             x: 10,
             y: 10
-        }}, "F", world))
+        }}, "F", world, []))
         .to.have.property('type')
         .and.equal(constants.LOST_ROBOT);
     });

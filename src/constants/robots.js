@@ -1,5 +1,6 @@
 export default {
     "CREATE_ROBOT": "CREATE_ROBOT",
     "UPDATE_ROBOT": "UPDATE_ROBOT",
-    "LOST_ROBOT": "LOST_ROBOT"
+    "LOST_ROBOT": "LOST_ROBOT",
+    "SCENT_FOUND": "SCENT_FOUND"
 }
