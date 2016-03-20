@@ -1,3 +1,6 @@
+import { createStore, combineReducers } from 'redux';
+import parseInput from './helpers/parseInput';
+
 const input = `5 3
 1 1 E
 RFRFRFRF
@@ -9,11 +12,6 @@ FRRFLLFFRRFLL
 LLFFFLFLFL`
 
 
-const parseInput = (input) => {
-    // TODO: Parse input into object
-    return {};
-}
-
 const exploreMars = (robots) => {
     return robots.map(followInstructions);
 }
@@ -24,5 +22,5 @@ const followInstructions = (robot) => {
 }
 
 const config = parseInput(input);
-const robots = exploreMars([]);
+const robots = exploreMars(config.robots);
 console.log(robots);
