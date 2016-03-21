@@ -1,6 +1,6 @@
 # Developer programming problem –  Martian Robots.
 
-A [Redux](http://redux.js.org/) implemenation of the Martian Robots problems.
+A [Redux](http://redux.js.org/) implemenation of the [Martian Robots problem](https://github.com/rpullinger/martian-robots/blob/master/problem.md).
 
 ## To run 
 
